@@ -58,7 +58,8 @@ func (h *handlerCategory) CreateCategory(w http.ResponseWriter, r *http.Request)
 	w.Header().Set("Content-type", "application/json")
 
 	var request models.Category
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+	if err := json.NewDecoder(r.Body).Decode(&request); 
+	err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		response := dto.ErrorResult {Code: http.StatusBadRequest, Message: err.Error()}
 		json.NewEncoder(w).Encode(response)
@@ -75,7 +76,7 @@ func (h *handlerCategory) CreateCategory(w http.ResponseWriter, r *http.Request)
 	}
 
 	Category := models.Category{
-		Name:		request.Name,
+		Name:	request.Name,
 	}
 
 	data, err := h.CategoryRepositories.CreateCategory(Category)
