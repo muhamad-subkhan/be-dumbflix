@@ -79,10 +79,10 @@ func (h *handler) CreateUser(w http.ResponseWriter, r *http.Request) {
 		Fullname:     	request.Fullname,
 		Email:    		request.Email,
 		Password: 		request.Password,
-		// Gender:			request.Gender,
-		// Phone:			request.Phone,
-		// Address:		request.Address,
-		// Subscribe:		request.Subscribe,
+		Gender:			request.Gender,
+		Phone:			request.Phone,
+		Address:		request.Address,
+		Subscribe:		request.Subscribe,
 
 	}
 
@@ -177,9 +177,9 @@ func convertResponse(u models.User) usersdto.UserResponse {
 		Fullname:    	u.Fullname,
 		Email:    		u.Email,
 		Password: 		u.Password,
-		// Gender:			u.Gender,
-		// Phone:			u.Phone,
-		// Address: 		u.Address,
-		// Subscribe: 		u.Subscribe,
+		Gender:			u.Gender,
+		Phone:			u.Phone,
+		Address: 		u.Address,
+		Subscribe:		u.Subscribe,
 	}
 }
