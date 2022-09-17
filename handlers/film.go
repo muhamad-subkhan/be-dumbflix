@@ -11,6 +11,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/golang-jwt/jwt/v4"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/gorilla/mux"
 )
@@ -25,6 +27,10 @@ func HandlerFilm(FilmRepository repositories.FilmRepository) *handlerFilm {
 
 func (h *handlerFilm) CreateFilm(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "aplication/json")
+
+	// get data user token
+	userInfo := r.Context().Value("userInfo").(jwt.MapClaims)
+	userId := int(userInfo["id"].(float64))
 	
 	var request models.Film
 	if err := json.NewDecoder(r.Body).Decode(&request)
@@ -49,6 +55,7 @@ func (h *handlerFilm) CreateFilm(w http.ResponseWriter, r *http.Request){
 		TumbnailFilm: request.TumbnailFilm,
 		Year: request.Year,
 		Description: request.Description,
+		UserID:  userId,	
 	}
 
 	data, err := h.FilmRepository.CreateFilm(film)

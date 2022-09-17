@@ -5,6 +5,6 @@ type Film struct {
 	Title        string `json:"title" gorm:"type: varchar(255)"`
 	TumbnailFilm string `json:"tumbnailfilm" gorm:"type: varchar(255)"`
 	Year         string `json:"year"`
-	// Category     []Category `json:"`
-	Description string `json:"deskripsi" gorm:"type:text" form:"deskripsi"`
+	Description  string `json:"deskripsi" gorm:"type:text" form:"deskripsi"`
+	UserID       int    `json:"-" gorm:"type:int"`
 }
